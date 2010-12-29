@@ -2,7 +2,6 @@ import sbt._
 
 class LiftCssBindTestsProject(info: ProjectInfo) extends DefaultWebProject(info) {
   override def scanDirectories = Nil
-  override def jettyWebappPath  = webappPath
   override val jettyPort = 9090
 
   val mavenLocal = "Local Maven Repository" at "file://"+Path.userHome+"/.m2/repository"
@@ -17,5 +16,6 @@ class LiftCssBindTestsProject(info: ProjectInfo) extends DefaultWebProject(info)
   val liftWebkit = "net.liftweb" %% "lift-webkit" % liftVersion
   val grizzledSlf4j = "org.clapper" %% "grizzled-slf4j" % "0.3.2"
   val specs = "org.scala-tools.testing" %% "specs" % "1.6.6"
+  val unit = "junit" % "junit" % "4.8.2" % "test"
   val logback = "ch.qos.logback" % "logback-classic" % "0.9.25"
 }

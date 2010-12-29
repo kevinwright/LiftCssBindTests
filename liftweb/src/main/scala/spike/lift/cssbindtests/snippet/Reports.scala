@@ -78,4 +78,5 @@ class Reports {
     ".eachReport [class]" #> NoString &
     ".reportLink [class]" #> NoString
 
+  def list1 = identity _
 }

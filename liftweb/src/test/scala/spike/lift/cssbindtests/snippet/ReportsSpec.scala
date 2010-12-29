@@ -37,7 +37,7 @@ class ReportsSpec extends SpecificationWithJUnit {
 
       val nodeseq =
         <div id="root">
-          <div class="justOne">
+          <div class="repeatContentsPerOuter">
             <h3><a href="#" class="outerName"></a></h3>
             <ul>              
                <li class="oncePerInner"><a href="" class="innerName"></a></li>
@@ -66,8 +66,8 @@ class ReportsSpec extends SpecificationWithJUnit {
       val NoString: Option[String] = None
 
       val bind3 =
-        ".justOne" #> doOuters(testData)  &
-        ".justOne [class]" #> NoString &
+        ".repeatContentsPerOuter" #> doOuters(testData)  &
+        ".repeatContentsPerOuter [class]" #> NoString &
         ".oncePerInner [class]" #> NoString &
         ".outerName [class]" #> NoString &
         ".innerName [class]" #> NoString
