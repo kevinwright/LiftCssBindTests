@@ -39,14 +39,4 @@
         <load-on-startup>0</load-on-startup>
     </servlet>
 
-    <servlet>
-        <servlet-name>sqldatasource</servlet-name>
-        <servlet-class>com.lift.cssbindtests.vizdatasource.SqlDataSourceServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>sqldatasource</servlet-name>
-        <url-pattern>/sqldatasource</url-pattern>
-    </servlet-mapping>
-
 </web-app>
