@@ -33,6 +33,7 @@ class Boot {
     // Build SiteMap
     def siteMap = SiteMap(
       Menu(S ? "Home") / "index",
+      Menu(S ? "Bind-Tests") / "bind-tests",
       Menu(S ? "Reports") / "reports" / **
     )
 
