@@ -1,4 +1,4 @@
-package com.bskyb.adsmart
+package spike.lift.cssbindtests
 package snippet
 
 
@@ -13,7 +13,7 @@ import net.liftweb.util._
 import Helpers._
 import BindPlus._
 
-import util.Identity._
+import pimps.Identity._
 
 class ReportsSpec extends SpecificationWithJUnit {
 

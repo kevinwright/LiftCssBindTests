@@ -33,7 +33,7 @@ class Boot {
     // Build SiteMap
     def siteMap = SiteMap(
       Menu(S ? "Home") / "index",
-      Menu(S ? "DataView") / "dataView" / **
+      Menu(S ? "Reports") / "reports" / **
     )
 
     LiftRules.setSiteMap(siteMap)

@@ -9,7 +9,7 @@ import Helpers._
 import BindPlus._
 import xml.{Elem, Node, NodeSeq, Text}
 
-import util.Identity._
+import pimps.Identity._
 
 
 object Reports {
