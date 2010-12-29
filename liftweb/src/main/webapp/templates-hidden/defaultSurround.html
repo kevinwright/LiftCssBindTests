@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:lift="http://liftweb.net/">
+	<head>
+        <link type="text/css" href="/css/redmond/jquery-ui-1.8.6.custom.css" rel="Stylesheet" />
+        <link type="text/css" href="/css/default.css" rel="Stylesheet" />
+	</head>
+
+	<body background="/images/bg.jpg">
+
+        <div id="topbar">
+            <h1>Sky AdSmart Data Visualisation</h1>
+        </div>
+
+        <div class="lift:Reports.list" id="reports-panel">
+            <h2 class="">Reports available:</h2>
+            <div id="selectReportAccordion">
+                <div class="eachCategory">
+                    <h3><a href="#" class="categoryHeader"></a></h3>
+                    <div>
+                        <ul>
+                            <li class="eachReport"><a class="reportLink" href=""></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <a href="#" id="reports-panel-tab">Chose a Report</a>
+        </div>
+
+		<lift:bind name="content" />
+		<!--<lift:Menu.builder />-->
+
+        <br/>
+        <hr/>
+        <br/>
+        <br/>
+
+        
+        <div class="cb fr"><i>Copyright ©2010 BskyB PLC</i></div>
+
+        <script id="jquery" src="/classpath/jquery.js" type="text/javascript"></script>
+        <script id="jquery-ui" src="/js/jquery-ui-1.8.6.custom.min.js" type="text/javascript"></script>
+        <script id="jsapi" src="http://www.google.com/jsapi" type="text/javascript"></script>
+        <script id="common" src="/js/common.js" type="text/javascript"></script>
+
+	</body>
+</html>

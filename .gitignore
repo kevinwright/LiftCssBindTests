@@ -1,0 +1,16 @@
+.DS_Store
+*/log/*
+*/tmp/*
+*~
+.#*
+CVS/*
+.svn/*
+.hg/*
+*/build/*
+*/target/*
+.cvsignore
+.hgignore
+*.iml
+*.iws
+*.ipr
+

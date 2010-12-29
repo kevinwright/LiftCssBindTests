@@ -1,0 +1,15 @@
+<div class="lift:surround?with=defaultSurround;at=content">
+
+    <div id="summary" class="cb lift:Report.summary">
+        <h1>Now Showing, <span id="reportname"/></h1>
+        <a id="jsonDataLink" href="../">View JSON Data</a>
+        | <a id="csvLink" href="../">Download CSV</a>
+        | <a id="tsvLink" href="../">Download TSV (tab separated, for Excel)</a>
+    </div>
+
+    <!-- annoyingly, can't use class="lift:bind" here -->
+    <lift:bind name="content"/>
+
+    <script class="lift:tail" type="text/javascript" src="/js/report-common.js"></script>
+
+</div>
