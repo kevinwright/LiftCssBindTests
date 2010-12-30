@@ -64,10 +64,11 @@ class Reports {
     }
 
   private[this] def doCategories(data:Seq[Category]) = {
-    def innerDo(catg:Category, ns:NodeSeq) = ns |>
+    def innerDo(ns:NodeSeq) = (catg:Category) =>
+      ns |>
       ".categoryHeader *" #> catg.name |>
       ".eachReport" #> doReports(catg.reports)
-    (ns:NodeSeq) => data.flatMap{innerDo(_,ns)} flatMap contents
+    (ns:NodeSeq) => data.flatMap{innerDo(ns)} flatMap contents
   }
 
   
@@ -78,5 +79,7 @@ class Reports {
     ".eachReport [class]" #> NoString &
     ".reportLink [class]" #> NoString
 
-  def list1 = identity _
+  def test1 = ".eachCategory" #> {
+    (ns:NodeSeq) => Reports.byCategory.flatMap(catg => ns |> (".categoryHeader *" #> catg.name))
+  }
 }
