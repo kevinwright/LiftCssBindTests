@@ -79,7 +79,74 @@ class Reports {
     ".eachReport [class]" #> NoString &
     ".reportLink [class]" #> NoString
 
-  def test1 = ".eachCategory" #> {
-    (ns:NodeSeq) => Reports.byCategory.flatMap(catg => ns |> (".categoryHeader *" #> catg.name))
+  type NsFunc = NodeSeq => NodeSeq
+
+  def contentOf(ns: NodeSeq): NodeSeq = ns match {
+    case e: Elem => e.child
+    case x => x
   }
+
+  def *(f: NsFunc): NsFunc = {
+    case e: Elem => f(e.child)
+    case x => f(x)
+  }
+
+  def repeat(nsf:Seq[NsFunc]): NsFunc =
+    (xml:NodeSeq) => nsf flatMap (_ apply xml)
+
+  def repeatContents(nsf:Seq[NsFunc]): NsFunc =
+    (xml:NodeSeq) =>  nsf flatMap (_ apply contentOf(xml))
+
+
+
+  val categories = Reports.byCategory
+
+  def test1 = ".eachCategory" #> repeat {
+    categories map (".categoryHeader *" #> _.name)
+  }
+
+  def test2 = ".eachCategory *" #> *( repeat {
+    categories map (".categoryHeader *" #> _.name)
+  })
+
+  def test3 = ".eachCategory" #> *( repeat {
+    categories map (".categoryHeader *" #> _.name)
+  })
+
+  def test4 = ".eachCategory" #> repeatContents {
+    categories map (".categoryHeader *" #> _.name)
+  }
+
+
+  def test5 = ".eachCategory" #> repeatContents {
+    categories map { catg =>
+      ".categoryHeader *" #> catg.name andThen
+      ".eachReport" #> repeat {
+        catg.reports map { report =>
+          ".reportLink *" #> report.name &
+          ".reportLink [href]" #> ("/reports/report?id=" + report.id)
+        }
+      }
+    }
+  }
+
+  def repeatFor[T](coll:Seq[T])(func:T => NsFunc) = {
+    repeat(coll map func)
+  }
+
+  def repeatContentsFor[T](coll:Seq[T])(func:T => NsFunc) = {
+    repeatContents(coll map func)
+  } 
+
+  def test6 = ".eachCategory" #> repeatContentsFor(categories) {
+    catg =>
+    ".categoryHeader *" #> catg.name andThen
+    ".eachReport" #> repeatFor(catg.reports) {
+      report =>
+      ".reportLink *" #> report.name &
+      ".reportLink [href]" #> ("/reports/report?id=" + report.id)
+    }
+  }
+
+
 }

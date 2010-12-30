@@ -6,7 +6,7 @@ class LiftCssBindTestsProject(info: ProjectInfo) extends DefaultWebProject(info)
 
   val mavenLocal = "Local Maven Repository" at "file://"+Path.userHome+"/.m2/repository"
 
-  val liftVersion = "2.2-RC1"
+  val liftVersion = "2.2-RC5"
   val jettyVersion = "7.2.0.RC0"
 
   val jetty7Client = "org.eclipse.jetty" % "jetty-client" % jettyVersion % "compile,test"

@@ -17,7 +17,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <lift.version>2.2-RC1</lift.version>
+        <lift.version>2.2-RC5</lift.version>
     </properties>
 
     <build>
@@ -44,7 +44,7 @@
 
         <dependency>
             <groupId>net.liftweb</groupId>
-            <artifactId>lift-mapper_${scala.version}</artifactId>
+            <artifactId>lift-webkit_${scala.version}</artifactId>
             <version>${lift.version}</version>
         </dependency>
     </dependencies>
