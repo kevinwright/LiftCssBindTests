@@ -1,5 +1,5 @@
 package spike.lift.cssbindtests
-package pimps
+package util
 
 /**
  * Shamelessly stolen from scalaz to get the |> method

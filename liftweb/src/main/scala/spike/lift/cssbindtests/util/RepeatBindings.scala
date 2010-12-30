@@ -1,11 +1,28 @@
-package spike.lift.cssbindtests.util
+package spike.lift.cssbindtests
+package util
 
-/**
- * Created by IntelliJ IDEA.
- * User: kevin
- * Date: 30/12/10
- * Time: 14:39
- * To change this template use File | Settings | File Templates.
- */
+import xml.{Elem, NodeSeq}
 
-class RepeatBindings
+object RepeatBindings {
+  type NsFunc = NodeSeq => NodeSeq
+
+  def contentOf(ns: NodeSeq): NodeSeq = ns match {
+    case e: Elem => e.child
+    case x => x
+  }
+
+  def repeat(nsf:Seq[NsFunc]): NsFunc =
+    (xml:NodeSeq) => nsf flatMap (_ apply xml)
+
+  def repeatContents(nsf:Seq[NsFunc]): NsFunc =
+    (xml:NodeSeq) =>  nsf flatMap (_ apply contentOf(xml))
+
+  def repeatFor[T](coll:Seq[T])(func:T => NsFunc) = {
+    repeat(coll map func)
+  }
+
+  def repeatContentsFor[T](coll:Seq[T])(func:T => NsFunc) = {
+    repeatContents(coll map func)
+  }
+
+}

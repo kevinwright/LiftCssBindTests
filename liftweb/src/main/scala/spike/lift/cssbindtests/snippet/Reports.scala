@@ -9,8 +9,8 @@ import Helpers._
 import BindPlus._
 import xml.{Elem, Node, NodeSeq, Text}
 
-import pimps.Identity._
-
+import util.Identity._
+import util.RepeatBindings._
 
 object Reports {
   case class Report(id:String, name:String, visualisations:Seq[String] = Seq.empty)
@@ -79,25 +79,10 @@ class Reports {
     ".eachReport [class]" #> NoString &
     ".reportLink [class]" #> NoString
 
-  type NsFunc = NodeSeq => NodeSeq
-
-  def contentOf(ns: NodeSeq): NodeSeq = ns match {
-    case e: Elem => e.child
-    case x => x
-  }
-
   def *(f: NsFunc): NsFunc = {
     case e: Elem => f(e.child)
     case x => f(x)
   }
-
-  def repeat(nsf:Seq[NsFunc]): NsFunc =
-    (xml:NodeSeq) => nsf flatMap (_ apply xml)
-
-  def repeatContents(nsf:Seq[NsFunc]): NsFunc =
-    (xml:NodeSeq) =>  nsf flatMap (_ apply contentOf(xml))
-
-
 
   val categories = Reports.byCategory
 
@@ -129,14 +114,6 @@ class Reports {
       }
     }
   }
-
-  def repeatFor[T](coll:Seq[T])(func:T => NsFunc) = {
-    repeat(coll map func)
-  }
-
-  def repeatContentsFor[T](coll:Seq[T])(func:T => NsFunc) = {
-    repeatContents(coll map func)
-  } 
 
   def test6 = ".eachCategory" #> repeatContentsFor(categories) {
     catg =>
